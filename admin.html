@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Painel Admin - Nascimento Paisagismo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0fdf4;
+      padding: 40px;
+      color: #1a2e1f;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2e7d32;
+      text-align: center;
+    }
+    input[type="file"], input[type="password"], button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 16px;
+    }
+    .form-section {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Área Administrativa</h2>
+    <label for="senha">Digite a senha:</label>
+    <input type="password" id="senha" placeholder="Senha de acesso" />
+    <button onclick="verificarSenha()">Entrar</button>
+
+    <div id="formulario" style="display:none;">
+      <div class="form-section">
+        <h3>Enviar Imagem</h3>
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+          <input type="file" name="arquivo" accept="image/*" required />
+          <input type="hidden" name="tipo" value="imagem" />
+          <button type="submit">Enviar Imagem</button>
+        </form>
+      </div>
+
+      <div class="form-section">
+        <h3>Enviar Vídeo</h3>
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+          <input type="file" name="arquivo" accept="video/*" required />
+          <input type="hidden" name="tipo" value="video" />
+          <button type="submit">Enviar Vídeo</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function verificarSenha() {
+      const senha = document.getElementById("senha").value;
+      if (senha === "admin123") {
+        document.getElementById("formulario").style.display = "block";
+      } else {
+        alert("Senha incorreta.");
+      }
+    }
+  </script>
+</body>
+</html>
