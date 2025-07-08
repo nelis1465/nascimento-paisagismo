@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nascimento paisagismo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f0fdf4;
+      color: #1a2e1f;
+      position: relative;
+    }
+
+    header {
+      background-color: #e6f4ea;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2e7d32;
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #2e7d32;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 60px 40px;
+      background-color: #f3fbf5;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+      max-width: 500px;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      color: #1a3b2a;
+    }
+
+    .hero-text span {
+      color: #43a047;
+    }
+
+    .hero-text p {
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      margin-top: 24px;
+    }
+
+    .hero-buttons button {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #2e7d32;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #27692a;
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: #2e7d32;
+      border: 2px solid #2e7d32;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e6f4ea;
+    }
+
+    .hero-image {
+      flex: 1 1 400px;
+      text-align: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+      .hero-text, .hero-image {
+        text-align: center;
+      }
+      .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .galeria-item {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .galeria-item:hover {
+      transform: scale(1.02);
+    }
+
+    .galeria-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Ícones especiais - estilo */
+    .icon-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: nowrap;
+      margin: 40px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+
+    .icon-box {
+      background-color: #e8f3e6;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      width: 220px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin: 10px;
+      position: relative;
+      z-index: 0;
+      cursor: pointer;
+    }
+
+    .icon-box:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1;
+    }
+
+    .icon-box img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .icon-box h3 {
+      color: #0b572e;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .icon-box p {
+      font-size: 14px;
+      color: #2e2e2e;
+    }
+
+    /* Serviços - ícones à esquerda e imagem à direita */
+    #servicos {
+      background-color: #f3fbf5;
+      padding: 60px 40px;
+    }
+
+    #servicos .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #servicos .servicos-lista {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    #servicos .servico-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 12px;
+      padding: 10px;
+      background-color: #e8f3e6;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    #servicos .servico-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+      background-color: #d1e7cb;
+    }
+
+    #servicos .servico-icone {
+      width: 48px;
+      height: 48px;
+      margin-right: 14px;
+      color: #2e7d32;
+      flex-shrink: 0;
+    }
+
+    #servicos .servico-texto {
+      font-size: 18px;
+      color: #1a2e1f;
+      font-weight: 600;
+    }
+
+    #servicos .servico-imagem {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    #servicos .servico-imagem img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+
+    /* Galeria de vídeos */
+    #videos {
+      background: #dff0d8;
+      padding: 60px 40px;
+      width: 100%;
+    }
+
+    #videos .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    #videos h2 {
+      text-align: center;
+      font-size: 32px;
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    #videos p {
+      text-align: center;
+      color: #4e6858;
+      margin-bottom: 40px;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .video-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Contato */
+    #contato {
+      background-color: #f3fbf5;
+      padding: 60px 40px;
+      max-width: 1300px;
+      margin: 0 auto 60px auto;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
+    }
+
+    #contato h2 {
+      color: #2e7d32;
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #contato p {
+      color: #4e6858;
+      font-size: 16px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #contato .contato-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      color: #1a2e1f;
+    }
+
+    /* Botão flutuante WhatsApp */
+    #whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 10000;
+      transition: background-color 0.3s ease;
+    }
+
+    #whatsapp-button:hover {
+      background-color: #1ebe57;
+    }
+
+    #whatsapp-button svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+    }
+
+    @media (max-width: 768px) {
+      #contato {
+        padding: 40px 20px;
+      }
+      #contato .contato-info {
+        font-size: 16px;
+      }
+    }
+  </style>
+
+  <!-- Font Awesome para ícones -->
+  <script src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/ce7f3edb39fbf24c79f564943ed54d1c18436f32/natureza.jpg" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <header>
+    <div class="logo">Nascimento paisagismo</div>
+    <nav>
+      <a href="#inicio">Início</A>
+      <a href="#produtos">Produtos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#contato">Contato</a>
+      <!-- Botão flutuante WhatsApp -->
+<a
+  href="https://wa.me/5571983434020"
+  target="_blank"
+  rel="noopener"
+  id="whatsapp-button"
+  aria-label="WhatsApp"
+>
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#25D366" d="M0 0h24v24H0z"/>
+    <path fill="white" d="M17.472 14.382c-.297-.148-1.758-.867-2.031-.967-.273-.1-.472-.148-.672.15-.198.297-.767.967-.94 1.164-.173.198-.347.223-.644.075-.297-.148-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.15-.173.198-.297.297-.495.1-.198.05-.372-.025-.52-.075-.148-.672-1.611-.92-2.206-.242-.579-.487-.5-.672-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.148.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347z"/>
+  </svg>
+</a>
+<button id="adminAccess" onclick="mostrarLogin()" style="position:fixed;bottom:10px;left:10px;opacity:0.1;border:none;background:none;cursor:pointer;">.</button>
+
+<div id="loginAdmin" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:30px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:9999;">
+  <h3>Login de Administrador</h3>
+  <input type="password" id="adminSenha" placeholder="Senha secreta" style="padding:8px;width:100%;margin-top:10px;"><br><br>
+  <button onclick="verificaSenha()" style="padding:10px 20px;background:#2e7d32;color:white;border:none;border-radius:8px;">Entrar</button>
+</div>
+
+<div id="painelAdmin" style="display:none;padding:20px;background:white;position:fixed;top:10%;left:10%;right:10%;bottom:10%;z-index:9998;overflow:auto;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+  <h2>Painel do Administrador</h2>
+  <form action="upload.php" method="POST" enctype="multipart/form-data">
+    <label>Selecionar imagem:</label><br>
+    <input type="file" name="imagem"><br><br>
+    <label>Selecionar vídeo:</label><br>
+    <input type="file" name="video"><br><br>
+    <button type="submit" style="padding:10px 20px;background:#2e7d32;color:white;border:none;border-radius:8px;">Enviar</button>
+  </form>
+  <br><br>
+  <button onclick="document.getElementById('painelAdmin').style.display='none'" style="padding:10px 20px;">Fechar Painel</button>
+</div>
+
+<script>
+  function mostrarLogin() {
+    document.getElementById('loginAdmin').style.display = 'block';
+  }
+
+  function verificaSenha() {
+    const senha = document.getElementById('adminSenha').value;
+    if (senha === 'verde2025') { // você pode trocar a senha
+      document.getElementById('loginAdmin').style.display = 'none';
+      document.getElementById('painelAdmin').style.display = 'block';
+    } else {
+      alert('Senha incorreta');
+    }
+  }
+</script>
+
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-text">
+      <h1>Transforme seu <span>Jardim dos Sonhos</span></h1>
+      <p>Descubra nossa coleção especial de árvores centenárias, plantas raras e histórias incríveis que marcaram gerações. Conhecimento, beleza e preservação no mesmo lugar.</p>
+      <div class="hero-buttons">
+      <div class="hero-buttons">
+  <button class="btn-primary" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'});">Ver Trabalhos</button>
+  <button class="btn-secondary" onclick="window.open('https://wa.me/5571983434020', '_blank')">Fale Conosco</button>
+
+
+</div>
+
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/ce7f3edb39fbf24c79f564943ed54d1c18436f32/natureza.jpg" alt="Jardim Florido" />
+    </div>
+  </section>
+
+  <!-- Seção dos 4 ícones -->
+  <div class="icon-container">
+    <div class="icon-box" tabindex="0">
+      <img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/refs/heads/main/folha%20verde.avif" alt="Plantas Premium" />
+      <h3>Plantas Premium</h3>
+      <p>Seleção cuidadosa das melhores mudas e plantas ornamentais</p>
+    </div>
+    <div class="icon-box" tabindex="0">
+      <img src="" alt="" />
+      <h3>Especialista em Atendimento</h3>
+      <p>Equipe especializada para orientar suas escolhas</p>
+    </div>
+    <div class="icon-box" tabindex="0">
+      <img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/refs/heads/main/garantia.webp" alt="Qualidade Garantida" />
+      <h3>Qualidade Garantida</h3>
+      <p>Produtos certificados com garantia de qualidade</p>
+    </div>
+    <div class="icon-box" tabindex="0">
+      <img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/refs/heads/main/entrega.jpg" alt="Entrega Rápida" />
+      <h3>Entrega Rápida</h3>
+      <p>Entregamos suas plantas com cuidado e agilidade</p>
+    </div>
+  </div>
+
+  <!-- Seção Serviços -->
+  <section id="servicos">
+    <div class="container">
+      <div class="servicos-lista">
+        <div class="servico-item" tabindex="0">
+          <i class="fas fa-leaf servico-icone"></i>
+          <span class="servico-texto">Paisagismo e Jardinagem</span>
+        </div>
+        <div class="servico-item" tabindex="0">
+          <i class="fas fa-seedling servico-icone"></i>
+          <span class="servico-texto">Venda de Plantas Ornamentais</span>
+        </div>
+        <div class="servico-item" tabindex="0">
+          <i class="fas fa-tree servico-icone"></i>
+          <span class="servico-texto">Preservação de Árvores Centenárias</span>
+        </div>
+        <div class="servico-item" tabindex="0">
+          <i class="fas fa-tools servico-icone"></i>
+          <span class="servico-texto">Manutenção de Jardins</span>
+        </div>
+      </div>
+      <div class="servico-imagem">
+        <img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/refs/heads/main/ro%C3%A7ador%20.jpg" alt="Serviços de Jardinagem" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria de imagens -->
+  <section id="galeria" style="padding: 60px 0; background: #e8f5e9; width: 100%;">
+    <div style="max-width: 1300px; margin: 0 auto; padding: 0 40px;">
+      <h2 style="text-align: center; font-size: 32px; color: #2e7d32;">Galeria de Projetos</h2>
+      <p style="text-align: center; color: #4e6858; margin-bottom: 40px;">
+        Veja alguns dos nossos trabalhos e inspire-se para seu próximo projeto
+      </p>
+
+      <div class="galeria-grid">
+        <div class="galeria-item"><img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/ce7f3edb39fbf24c79f564943ed54d1c18436f32/grama.jpg" alt="Árvore 1" /></div>
+        <div class="galeria-item"><img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/ce7f3edb39fbf24c79f564943ed54d1c18436f32/grama%202.jpg" alt="Árvore 2" /></div>
+        <div class="galeria-item"><img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/ce7f3edb39fbf24c79f564943ed54d1c18436f32/jardin%202.jpg" alt="Árvore 3" /></div>
+        <div class="galeria-item"><img src="https://raw.githubusercontent.com/nelis1465/nascimento-paisagismo/ce7f3edb39fbf24c79f564943ed54d1c18436f32/canteiro%20.jpg" alt="Árvore 4" /></div>
+        <div class="galeria-item"><img src="https://github.com/nelis1465/nascimento-paisagismo/blob/main/polda%20de%20grama.jpg?raw=true" alt="Árvore 4" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria de vídeos -->
+  <section id="videos">
+    <div class="container">
+      <h2>Galeria de Vídeos</h2>
+      <p>Confira vídeos dos nossos trabalhos e projetos realizados</p>
+
+      <div class="videos-grid">
+        <div class="video-item">
+          <iframe width="100%" height="180" src="https://www.youtube.com/embed/tgbNymZ7vqY" 
+            title="Vídeo 1" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="180" src="https://youtu.be/DinbatihGgo?si=S_40nsgHTpvt3F2t" 
+            title="Vídeo 1" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-item">
+          <video width="100%" height="180" controls>
+            <source src="arvores/2025-06-19 14-14-07 - Trim.mkv" type="video/mp4" />
+            Seu navegador não suporta vídeos HTML5.
+          </video>
+        </div>
+
+        <!-- Adicione mais vídeos aqui -->
+      </div>
+    </div>
+  </section>
+
+ <!-- Seção Contato -->
+<section id="contato" style="padding: 60px 40px; background: #f3fbf5; max-width: 900px; margin: 0 auto; border-radius: 12px;">
+  <h2 style="color: #2e7d32; text-align: center; margin-bottom: 20px;">Contato</h2>
+  <p style="text-align: center; color: #4e6858; margin-bottom: 40px;">
+    Entre em contato conosco para tirar dúvidas, solicitar orçamento ou agendar uma visita.
+  </p>
+
+  <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+
+    <!-- Mapa à esquerda -->
+    <div style="flex: 1 1 350px; min-width: 300px; height: 350px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3245.159564582797!2d-38.40627962577156!3d-12.964409459662948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161b52eb7bca13%3A0x2d7568a96286db16!2sHorto%20Patamares!5e1!3m2!1spt-BR!2sbr!4v1751973191423!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- Informações de contato à direita -->
+    <div style="flex: 1 1 300px; min-width: 280px; font-size: 16px; color: #1a2e1f;">
+      <p><strong>Telefone:</strong> (71) 98343-4020</p>
+      <p><strong>E-mail:</strong> <a href="mailto:contato@nascimentopaisagismo.com.br" style="color: #2e7d32; text-decoration: none;">contato@nascimentopaisagismo.com.br</a></p>
+      <p><strong>Endereço:</strong> 
+        <a href="https://goo.gl/maps/YOUR_GOOGLE_MAPS_LINK" target="_blank" rel="noopener" style="color: #2e7d32; text-decoration: none;">
+          Rua das Palmeiras, 123 - Patamares, Salvador - BA
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer style="background-color: #2e7d32; color: #f0fdf4; padding: 30px 20px; text-align: center; font-size: 14px;">
+  <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+    <div>
+      &copy; 2025 Nascimento Paisagismo. Todos os direitos reservados.
+    </div>
+    <div>
+      <a href="#inicio" style="color: #a5d6a7; margin: 0 10px; text-decoration: none;">Início</a>
+      <a href="#produtos" style="color: #a5d6a7; margin: 0 10px; text-decoration: none;">Produtos</a>
+      <a href="#servicos" style="color: #a5d6a7; margin: 0 10px; text-decoration: none;">Serviços</a>
+      <a href="#galeria" style="color: #a5d6a7; margin: 0 10px; text-decoration: none;">Galeria</a>
+      <a href="#contato" style="color: #a5d6a7; margin: 0 10px; text-decoration: none;">Contato</a>
+    </div>
+    <div style="font-size: 16px;">
+      <a href="https://wa.me/5571983434020" target="_blank" rel="noopener" style="color: #25D366; text-decoration: none; font-weight: 600;">
+        <i class="fab fa-whatsapp" style="margin-right: 6px;"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</section>
+
+
+
